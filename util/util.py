@@ -51,8 +51,8 @@ def diagnose_network(net, name="network"):
 
 # initialize ddp
 def init_ddp():
-    # Initialize DDP if LOCAL_RANK is set
-    is_ddp = "WORLD_SIZE" in os.environ and int(os.environ["WORLD_SIZE"]) > 1
+    # Initialize DDP if WORLD_SIZE is set, even if it's 1
+    is_ddp = "WORLD_SIZE" in os.environ
 
     if is_ddp:
         if not dist.is_initialized():
